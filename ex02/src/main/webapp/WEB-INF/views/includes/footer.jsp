@@ -32,7 +32,29 @@
         $(".sidebar-nav")
         	.attr("class", "sidebar-nav navbar-collapse collapse")
         	.attr("aria-expanded", "false")
-        	.attr("style", "height:1px;")
+        	.attr("style", "height:1px;");
+        
+		var result = '<c:out value="${result}"/>';
+		
+		checkModal(result);
+		
+		function checkModal(){
+			
+			if(result===''){
+				return;
+			}
+			
+			if(parseInt(result) > 0){
+				$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.");
+				
+			}
+			
+			$("#myModal").modal("show");
+		}
+		
+		$("#regBtn").on("click", function(){
+			self.location = "/board/register"
+		});
     });
     </script>
 

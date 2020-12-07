@@ -29,16 +29,25 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
+	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
 		log.info("register............" + board);
 		service.register(board);
+		//1회성 데이터 전달시 사용
 		rttr.addFlashAttribute("result", board.getBno());
 		
 		return "redirect:/board/list";
 		
 	}
+	
+	
+	@GetMapping("/register")
+	public void register() {
+		
+	}
+	
 	
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model) {
