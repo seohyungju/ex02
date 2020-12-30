@@ -38,9 +38,12 @@
 		
 		checkModal(result);
 		
+		//뒤로가기시에 기존의 데이터를 호출하는 문제 때문에 추가
+		history.replaceState({}, null, null);
+		
 		function checkModal(){
 			
-			if(result===''){
+			if(result==='' || history.state ){
 				return;
 			}
 			
