@@ -48,12 +48,15 @@
 			</div>
 			
 			<button data-oper="modify" class="btn btn-default">
-				<a href="/board/modify?bno=<c:out value="${board.bno }"/>">Modify</a>
+				<!-- <a href="/board/modify?bno=<c:out value="${board.bno }"/>">Modify</a> -->
+				<a href="#">Modify</a>
 			</button>
 			<button data-oper="list" class="btn btn-info"><a href="/board/list">List</a></button>
 			
 			<form id="operForm" action="/board/modify" method="get">
-				<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>			
+				<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>
+				<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+				<input type="hidden" name='amount' value='<c:out value="${cri.amount }"/>'>			
 			</form>
 		</div>
 	</div>

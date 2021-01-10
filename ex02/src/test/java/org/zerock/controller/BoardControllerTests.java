@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.zerock.service.BoardServiceTests;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -35,7 +34,7 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	@Test
+	//@Test
 	public void testList() throws Exception{
 		log.info(
 				mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
@@ -45,7 +44,7 @@ public class BoardControllerTests {
 		);
 	}
 	
-	@Test
+	//@Test
 	public void testRegister() throws Exception{
 		
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
@@ -58,7 +57,7 @@ public class BoardControllerTests {
 				
 	}
 	
-	@Test
+	//@Test
 	public void testGet() throws Exception{
 		log.info(mockMvc.perform(MockMvcRequestBuilders
 				.get("/board/get")
@@ -67,7 +66,7 @@ public class BoardControllerTests {
 		);
 	}
 	
-	@Test
+	//@Test
 	public void testModify() throws Exception{
 		
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
@@ -81,12 +80,21 @@ public class BoardControllerTests {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testRemove() throws Exception{
 		
 		String resultpage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove").param("bno", "25")).andReturn().getModelAndView().getViewName();
 		
 		log.info(resultpage);
+	}
+	
+	@Test
+	public void testListPaging() throws Exception{
+		log.info(mockMvc.perform(
+				MockMvcRequestBuilders.get("/board/list").param("pageNum", "2").param("amount", "50"))
+				.andReturn()
+				.getModelAndView()
+				.getModel());
 	}
 	
 	
